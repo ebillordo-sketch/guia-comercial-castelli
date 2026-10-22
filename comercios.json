@@ -1,0 +1,74 @@
+[
+  {
+    "nombre": "El Dato",
+    "categoria": "Comidas",
+    "descripcion": "Hamburguesas comunes a $3.000. Promos: 4 x $10.000 y 6 x $15.000",
+    "telefono": "5493644704711",
+    "direccion": "Av. Alem N° 265",
+    "foto": "https://i.imgur.com/xXfjQN8.png",
+    "destacado": "no"
+  },
+  {
+    "nombre": "DG Lavadero de Autos",
+    "categoria": "Lavadero",
+    "descripcion": "Lavado en general. Lavado de chasis y motor, limpieza de interiores,  cambio de fundas, preparación pre y post venta",
+    "telefono": "5493644880091",
+    "direccion": "Av. Alem N° 230",
+    "foto": "https://i.imgur.com/baq8dmG.jpeg",
+    "destacado": "no"
+  },
+  {
+    "nombre": "Lavadero Viru Mato",
+    "categoria": "Lavadero",
+    "descripcion": "Horario de atención desde las 7:30, estamos todo el día, atendemos por turno con anticipación. 10 Años de experiencia. Hacemos interior, aspirado, siliconado, sopleteado, chasis completo, motor si el dueño lo pide.",
+    "telefono": "5493634633937",
+    "direccion": "Parque Industrial",
+    "foto": "https://i.imgur.com/0HqyqIJ.jpeg",
+    "destacado": "no"
+  },
+  {
+    "nombre": "Fimian Construcciones",
+    "categoria": "Construcción",
+    "descripcion": "Construcción de obras nuevas, reformas y remodelaciones, albañilería y obra civil, galpones y estructuras metálicas. Calidad, confianza y responsabilidad.",
+    "telefono": "5493644403532",
+    "direccion": "Juan José Castelli",
+    "foto": "https://i.imgur.com/LcQ8joW.jpeg",
+    "destacado": "no"
+  },
+  {
+    "nombre": "Vivero Un Rincón Verde",
+    "categoria": "Viveros",
+    "descripcion": "Ventas de plantas aromáticas, injerto de cítricos, plantas florales, etc.",
+    "telefono": "5493644591629",
+    "direccion": "Chacra 78",
+    "foto": "https://i.imgur.com/VO5lEJj.jpeg",
+    "destacado": "no"
+  },
+  {
+    "nombre": "Burbujitas",
+    "categoria": "Artículos de limpieza",
+    "descripcion": "Artículos de limpieza. Horarios de atención: Lunes a viernes de 8 a 12,30 hs. y de 16,30 a 21 hs.",
+    "telefono": "5493644624412",
+    "direccion": "Reconquista N°597 - Barrio Sarmiento",
+    "foto": "https://i.imgur.com/BBXHmLk.jpeg",
+    "destacado": "no"
+  },
+  {
+    "nombre": "Corte de Pasto Sebastian",
+    "categoria": "Mantenimiento",
+    "descripcion": "Cortes parejos y prolijos de terrenos, patios y quintas. Desmalezamiento. Trabajo seguro y responsable con compromiso y puntualidad. Tu espacio más limpio y lindo.",
+    "telefono": "5493725588294",
+    "direccion": "Juan José Castelli",
+    "foto": "https://i.imgur.com/3UKc0UV.jpeg",
+    "destacado": "no"
+  },
+  {
+    "nombre": "Panadería y Mercadito Morena",
+    "categoria": "Panaderia",
+    "descripcion": "Mercadería en general, comestibles, gas, carbon, artículos de limpieza. Panificados, lacteos, fiambres, envasados, bebidas. Reparto para negocios y trabajamos con escuelas.",
+    "telefono": "5491138075336",
+    "direccion": "Barrio 4 de Junio",
+    "foto": "https://i.imgur.com/MuLfI6N.jpeg",
+    "destacado": "no"
+  }
+]
