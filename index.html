@@ -359,31 +359,28 @@
       return "";
     }
 
-    function init() {
-      google.script.run
-        .withSuccessHandler(data => {
-          businesses = Array.isArray(data) ? data : [];
-          drawCategories();
-          render();
-        })
-        .withFailureHandler(() => {
-          document.getElementById("results").innerHTML =
-            '<div class="empty">No pudimos cargar los comercios. Intentá recargar la página.</div>';
-          document.getElementById("count").textContent = "";
-        })
-        .obtenerComercios();
-
-      google.script.run
-        .withSuccessHandler(data => {
-          configuration = Array.isArray(data) ? data : [];
-          drawSections();
-        })
-        .withFailureHandler(() => {
-          configuration = [];
-          drawSections();
-        })
-        .obtenerConfiguracion();
+    
+async function init() {
+  try {
+    const respuesta = await fetch("./comercios.json");
+    if (!respuesta.ok) {
+      throw new Error("No se pudieron cargar los comercios");
     }
+
+    const data = await respuesta.json();
+    businesses = Array.isArray(data) ? data : [];
+
+    drawCategories();
+    render();
+  } catch (error) {
+    document.getElementById("results").innerHTML =
+      '<div class="empty">No pudimos cargar los comercios. Intentá nuevamente más tarde.</div>';
+    document.getElementById("count").textContent = "0 comercios";
+  }
+
+  configuration = [];
+  drawSections();
+}
 
     function drawCategories() {
       const categoryNames = [
