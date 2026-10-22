@@ -454,9 +454,13 @@ function choose(category) {
 
 
     function drawSections() {
-      const ads = configuration.filter(item => item.tipo === "publicidad");
-      const pharmacies = configuration.filter(item => item.tipo === "farmacia");
-      const phones = configuration.filter(item => item.tipo === "telefono");
+      const estaActivo = item =>
+  String(item.activo || "").trim().toLowerCase() === "si" ||
+  String(item.activo || "").trim().toLowerCase() === "sí";
+
+const ads = configuration.filter(item => item.tipo === "publicidad" && estaActivo(item));
+const pharmacies = configuration.filter(item => item.tipo === "farmacia" && estaActivo(item));
+const phones = configuration.filter(item => item.tipo === "telefono" && estaActivo(item));
 
       document.getElementById("advertising").innerHTML =
         
@@ -547,7 +551,7 @@ ads.map(item => {
         }).join("");
 
   ["informacion1", "informacion2"].forEach((tipo, indice) => {
-    const item = configuration.find(x => x.tipo === tipo && x.activo);
+    const item = configuration.find(x => x.tipo === tipo && estaActivo(x));
     const contenedor = document.getElementById(
       indice === 0 ? "info1" : "info2"
     );
