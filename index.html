@@ -629,7 +629,7 @@ ads.map(item => {
 
 
       const ordenados = [...filtered].sort((a, b) =>
-        Number(Boolean(b.destacado)) - Number(Boolean(a.destacado))
+        Number(String(b.destacado).trim().toLowerCase() === "si") - Number(Boolean(a.destacado))
         );
         
         document.getElementById("results").innerHTML =
@@ -644,7 +644,7 @@ ads.map(item => {
               >
             ` : ""}
 
-            ${b.destacado ? `
+            ${String(b.destacado).trim().toLowerCase() === "si" ? `
               <div style="background:#fff3cd;color:#805b00;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:bold;margin-bottom:10px;">
                 ⭐ COMERCIO DESTACADO
               </div>
