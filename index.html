@@ -360,15 +360,34 @@
     }
 
     
+
 async function init() {
   try {
-    const respuesta = await fetch("./comercios.json");
-    if (!respuesta.ok) {
-      throw new Error("No se pudieron cargar los comercios");
+    const [respuestaComercios, respuestaConfig] = await Promise.all([
+      fetch("./comercios.json"),
+      fetch("./configuracion.json")
+    ]);
+
+    if (!respuestaComercios.ok || !respuestaConfig.ok) {
+      throw new Error("No se pudieron cargar los datos");
     }
 
-    const data = await respuesta.json();
-    businesses = Array.isArray(data) ? data : [];
+    const [dataComercios, dataConfig] = await Promise.all([
+      respuestaComercios.json(),
+      respuestaConfig.json()
+    ]);
+
+    businesses = Array.isArray(dataComercios) ? dataComercios : [];
+    configuration = Array.isArray(dataConfig) ? dataConfig : [];
+
+    drawCategories();
+    render();
+    drawSections();
+  } catch (error) {
+    document.getElementById("results").innerHTML =
+      '<div class="empty">No pudimos cargar los datos. Intentá nuevamente más tarde.</div>';
+    document.getElementById("count").textContent = "0 comercios";
+  }
 
     drawCategories();
     render();
