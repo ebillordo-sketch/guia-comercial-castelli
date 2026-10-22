@@ -1,0 +1,65 @@
+[
+  {
+    "tipo": "publicidad",
+    "titulo": "Tu negocio aquí!",
+    "descripcion": "Lo que quieres que los demás se enteren puede aparecer aquí!",
+    "telefono": "5493644358035",
+    "imagen": "https://i.imgur.com/R58PHl1.jpeg",
+    "enlace": "https://w.app/84os37",
+    "activo": "si"
+  },
+  {
+    "tipo": "publicidad",
+    "titulo": "Tu negocio aquí!",
+    "descripcion": "Lo que quieres que los demás se enteren puede aparecer aquí!",
+    "telefono": "5493644358035",
+    "imagen": "https://i.imgur.com/R58PHl1.jpeg",
+    "enlace": "https://w.app/84os37",
+    "activo": "si"
+  },
+  {
+    "tipo": "farmacia",
+    "titulo": "Farmacia Santo Tomas",
+    "descripcion": "Av. Héroes de Malvinas N° 60",
+    "telefono": "",
+    "imagen": "",
+    "enlace": "",
+    "activo": "si"
+  },
+  {
+    "tipo": "telefono",
+    "titulo": "",
+    "descripcion": "",
+    "telefono": "",
+    "imagen": "",
+    "enlace": "",
+    "activo": ""
+  },
+  {
+    "tipo": "telefono",
+    "titulo": "",
+    "descripcion": "",
+    "telefono": "",
+    "imagen": "",
+    "enlace": "",
+    "activo": ""
+  },
+  {
+    "tipo": "informacion1",
+    "titulo": "INFORMACIÓN IMPORTANTE",
+    "descripcion": "Aquí podrás publicar información importante de entidades importantes de Castelli.",
+    "telefono": "",
+    "imagen": "",
+    "enlace": "",
+    "activo": "no"
+  },
+  {
+    "tipo": "informacion2",
+    "titulo": "AVISOS A LA COMUNIDAD",
+    "descripcion": "Aquí podrás publicar avisos, campañas y comunicados para la comunidad.",
+    "telefono": "",
+    "imagen": "",
+    "enlace": "",
+    "activo": "no"
+  }
+]
