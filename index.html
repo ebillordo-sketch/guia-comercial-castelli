@@ -360,28 +360,98 @@
     }
 
 
-
 async function init() {
   try {
-    const respuestaComercios = await fetch("./comercios.json");
-    if (!respuestaComercios.ok) {
-      throw new Error("No se pudieron cargar los comercios");
+    const urlComercios = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMEgBi8DHOL6ULrg3ukoV-SJlCgT-QlZAtHhY47aySQ-cTVRlyGfaV5ISrNuKPq2FsfMlufUz6pyeT/pub?gid=0&single=true&output=csv";
+
+    const urlConfiguracion = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMEgBi8DHOL6ULrg3ukoV-SJlCgT-QlZAtHhY47aySQ-cTVRlyGfaV5ISrNuKPq2FsfMlufUz6pyeT/pub?gid=1844502957&single=true&output=csv";
+
+    const [respuestaComercios, respuestaConfig] = await Promise.all([
+      fetch(urlComercios),
+      fetch(urlConfiguracion)
+    ]);
+
+    if (!respuestaComercios.ok || !respuestaConfig.ok) {
+      throw new Error("No se pudieron cargar los datos publicados");
     }
 
-    const dataComercios = await respuestaComercios.json();
-    businesses = Array.isArray(dataComercios) ? dataComercios : [];
+    const [csvComercios, csvConfig] = await Promise.all([
+      respuestaComercios.text(),
+      respuestaConfig.text()
+    ]);
 
-    let dataConfig = [];
-    try {
-      const respuestaConfig = await fetch("./configuracion.json");
-      if (respuestaConfig.ok) {
-        dataConfig = await respuestaConfig.json();
+    const convertirCSV = (csv) => {
+      const filas = [];
+      let fila = [];
+      let campo = "";
+      let entreComillas = false;
+
+      for (let i = 0; i < csv.length; i++) {
+        const c = csv[i];
+
+        if (c === '"') {
+          if (entreComillas && csv[i + 1] === '"') {
+            campo += '"';
+            i++;
+          } else {
+            entreComillas = !entreComillas;
+          }
+        } else if (c === "," && !entreComillas) {
+          fila.push(campo);
+          campo = "";
+        } else if ((c === "\n" || c === "\r") && !entreComillas) {
+          if (c === "\r" && csv[i + 1] === "\n") i++;
+          fila.push(campo);
+          if (fila.some(v => v.trim() !== "")) filas.push(fila);
+          fila = [];
+          campo = "";
+        } else {
+          campo += c;
+        }
       }
-    } catch (error) {
-      dataConfig = [];
-    }
 
-    configuration = Array.isArray(dataConfig) ? dataConfig : [];
+      fila.push(campo);
+      if (fila.some(v => v.trim() !== "")) filas.push(fila);
+
+      if (!filas.length) return [];
+
+      const encabezados = filas.shift().map(v =>
+        v.replace(/^\uFEFF/, "").trim().toLowerCase()
+      );
+
+      return filas.map(valores => {
+        const objeto = {};
+        encabezados.forEach((nombre, i) => {
+          objeto[nombre] = (valores[i] || "").trim();
+        });
+        return objeto;
+      });
+    };
+
+    const datosComercios = convertirCSV(csvComercios);
+    const datosConfig = convertirCSV(csvConfig);
+
+    businesses = datosComercios.map(item => ({
+      nombre: item.nombre || "",
+      categoria: item.categoria || "",
+      descripcion: item.descripcion || "",
+      telefono: item.telefono || "",
+      direccion: item.direccion || "",
+      foto: item.foto || "",
+      destacado: ["si", "sí"].includes(
+        String(item.destacado || "").trim().toLowerCase()
+      )
+    }));
+
+    configuration = datosConfig.map(item => ({
+      tipo: item.tipo || "",
+      titulo: item.titulo || "",
+      descripcion: item.descripcion || "",
+      telefono: item.telefono || "",
+      imagen: item.imagen || "",
+      enlace: item.enlace || "",
+      activo: String(item.activo || "").trim().toLowerCase()
+    }));
 
     drawCategories();
     render();
@@ -389,10 +459,12 @@ async function init() {
 
   } catch (error) {
     document.getElementById("results").innerHTML =
-      '<div class="empty">No pudimos cargar los comercios. Intentá nuevamente más tarde.</div>';
+      '<div class="empty">No pudimos cargar los datos. Intentá nuevamente más tarde.</div>';
     document.getElementById("count").textContent = "0 comercios";
+    console.error(error);
   }
 }
+  
 
     function drawCategories() {
       const categoryNames = [
