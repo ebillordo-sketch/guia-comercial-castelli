@@ -415,9 +415,14 @@ async function init() {
 
       if (!filas.length) return [];
 
-      const encabezados = filas.shift().map(v =>
-        v.replace(/^\uFEFF/, "").trim().toLowerCase()
-      );
+      
+const encabezados = filas.shift().map(v =>
+  v.replace(/^\uFEFF/, "")
+   .trim()
+   .toLowerCase()
+   .normalize("NFD")
+   .replace(/[\u0300-\u036f]/g, "")
+);
 
       return filas.map(valores => {
         const objeto = {};
