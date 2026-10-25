@@ -565,7 +565,7 @@ const videoEmbed = videoId ? "https://www.youtube-nocookie.com/embed/" + videoId
 
       
 ${videoEmbed ? `
-  <div style="position:relative;width:100%;aspect-ratio:16/9;margin-bottom:10px;border-radius:11px;overflow:hidden;background:#000;">
+  <div style="position:relative;width:100%;max-width:360px;aspect-ratio:9/16;margin:0 auto 10px;border-radius:11px;overflow:hidden;background:#000;">
     <iframe
       src="${videoEmbed}"
       title="${escapeHtml(item.titulo || "Video publicitario")}"
