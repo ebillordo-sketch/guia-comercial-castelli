@@ -551,7 +551,7 @@ ads.map(item => {
   const video = safeUrl(item["video youtube"]);
   
 const videoId = video.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
-const videoEmbed = videoId ? "https://www.youtube-nocookie.com/embed/" + videoId[1] : "";
+const videoEmbed = videoId ? "https://www.youtube-nocookie.com/embed/" + videoId[1] + "?autoplay=1&mute=1&playsinline=1" : "";
   
   const link = safeUrl(item.enlace);
   const phone = String(item.telefono || "").replace(/\D/g, "");
