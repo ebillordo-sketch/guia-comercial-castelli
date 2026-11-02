@@ -468,6 +468,8 @@ configuration = datosConfig.map(item => ({
   "video youtube": item["video youtube"] || "",
   activo: String(item.activo || "").trim().toLowerCase()
 }));
+    localStorage.setItem("guia_comercios", JSON.stringify(businesses));
+localStorage.setItem("guia_configuracion", JSON.stringify(configuration));
     
 
     drawCategories();
