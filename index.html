@@ -480,7 +480,25 @@ localStorage.setItem("guia_configuracion", JSON.stringify(configuration));
     document.getElementById("results").innerHTML =
       '<div class="empty">No pudimos cargar los datos. Intentá nuevamente más tarde.</div>';
     document.getElementById("count").textContent = "0 comercios";
-    console.error(error);
+        console.error(error);
+
+    const comerciosGuardados = localStorage.getItem("guia_comercios");
+    const configuracionGuardada = localStorage.getItem("guia_configuracion");
+
+    if (comerciosGuardados && configuracionGuardada) {
+      businesses = JSON.parse(comerciosGuardados);
+      configuration = JSON.parse(configuracionGuardada);
+
+      drawCategories();
+      render();
+      drawSections();
+
+      document.getElementById("count").textContent += " (datos guardados)";
+    } else {
+      document.getElementById("results").innerHTML =
+        '<div class="empty">No pudimos cargar los datos. Intentá nuevamente más tarde.</div>';
+      document.getElementById("count").textContent = "0 comercios";
+    }
   }
 }
   
